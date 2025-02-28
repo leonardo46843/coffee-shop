@@ -127,6 +127,98 @@ nav ul li a:hover::after {
   display: none;
 }
 
+header .search-column {
+  position: absolute;
+  width: 50%;
+  height: 111%;
+  display: flex;
+  align-items: center;
+  top: 100%;
+  right: 10%;
+  background-color: var(--tertiary-colour);
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: .3s all;
+}
+
+header .search-column.active {
+  transform: scaleY(1);
+}
+
+header .search-column input {
+  width: 100%;
+  height: 100%;
+  padding: 1rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--secondary-colour);
+}
+
+header .search-column label {
+  margin-right: 1.5rem;
+  font-size: 2.3rem;
+  color: var(--secondary-colour);
+  font-weight: 700;
+  cursor: pointer;
+}
+
+header .cart {
+  position: absolute;
+  width: 44%;
+  height: 100vh;
+  padding: 0 1.5rem;
+  top: 100%;
+  right: -100%;
+  color: var(--secondary-colour);
+  background-color: var(--tertiary-colour);
+  transition: .5s linear;
+}
+
+header .cart.active {
+  right: 0;
+}
+
+header .cart .shopping {
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin: 2rem 0;
+  padding-bottom: 1rem;
+  gap: 1.5rem;
+  border-bottom: .18rem dashed #808080;
+}
+
+header .cart .shopping img {
+  height: 10rem;
+  border-radius: 1rem;
+}
+
+.cart .shopping .stuff h3 {
+  padding-bottom: 1rem;
+  font-size: 1.6rem;
+}
+
+.cart .shopping .stuff .price {
+  font-size: 1.4rem;
+}
+
+header .cart .shopping i {
+  position: absolute;
+  padding: .5rem;
+  right: 1rem;
+  font-size: 2rem;
+  cursor: pointer;
+  border: .2rem solid var(--tertiary-colour);
+  border-radius: 50%;
+  transition: .3s all ease;
+}
+
+header .cart .shopping i:hover {
+  color: #e50b0b;
+  border: .2rem solid #f60303;
+  transform: scale(1.11);
+}
+
 /* Hero */
 
 .hero {
@@ -206,13 +298,15 @@ nav ul li a:hover::after {
 
 /* About */
 .about,
-.gallery,
+.service,
+.product,
 .contact {
   padding: 8rem 7% 2rem;
 }
 
 .about h2,
-.gallery h2,
+.service h2,
+.product h2,
 .contact h2 {
   margin-bottom: 3rem;
   text-align: center;
@@ -221,7 +315,8 @@ nav ul li a:hover::after {
 }
 
 .about h2 span,
-.gallery h2 span,
+.service h2 span,
+.product h2 span,
 .contact h2 span,
 .contact h3 span {
   color: var(--primary-colour);
@@ -261,14 +356,19 @@ nav ul li a:hover::after {
   line-height: 1.5;
 }
 
-/* Gallery */
+/* Service */
 
-.gallery h2 {
+.service h2 {
   /* overwrite */
   margin-bottom: 2rem;
 }
 
-.gallery p {
+.service h3 {
+  font-size: 1.5rem;
+}
+
+.service p,
+.product p {
   max-width: 45rem;
   margin: auto;
   text-align: center;
@@ -277,7 +377,7 @@ nav ul li a:hover::after {
   line-height: 1.5;
 }
 
-.gallery .menu {
+.service .menu {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -300,10 +400,83 @@ nav ul li a:hover::after {
 
 .menu .card .price {
   font-size: 1.3rem;
+  font-weight: 600;
 }
 
-.menu .card .price span {
-  font-weight: bold;
+/* Product */
+
+.product .item {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+  margin-top: 4rem;
+  gap: 1.5rem;
+}
+
+.product .item .card {
+  padding: 2rem;
+  text-align: center;
+  border: .1rem solid #808080;
+  border-radius: .3rem;
+}
+
+.product .item .card .icons {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.item .card .icons a {
+  width: 4rem;
+  height: 4rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0.5rem 5rem;
+  color: var(--tertiary-colour);
+  border: .2rem solid transparent;
+  border-radius: 50%;
+  transition: .3s ease-in-out;
+}
+
+.item .card .icons a:hover {
+  font-weight: 600;
+  color: var(--primary-colour);
+  transform: scale(1.1);
+  border: .2rem solid var(--primary-colour);
+  background-color: rgba(255, 255, 255, 0.893);
+}
+
+.icons a i {
+  font-size: 2.5rem;
+}
+
+.product .item .card .detail {
+  padding: 1rem 0;
+}
+
+.item .card .detail img,
+.modal .container .detail img {
+  height: 25rem;
+}
+
+.item .card .description h3 {
+  font-size: 2rem;
+}
+
+.item .card .description .rating {
+  padding: 0.8rem;
+  font-size: 1.7rem;
+}
+
+.item .card .description .price {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.item .card .description .price span {
+  color: rgba(255, 255, 255, 0.692);
+  font-weight: 400;
+  text-decoration: line-through;
 }
 
 /* Contact */
@@ -365,6 +538,7 @@ nav ul li a:hover::after {
   font-size: 1.5rem;
   color: var(--tertiary-colour);
   font-weight: 600;
+  text-shadow: .3rem .3rem .5rem rgba(52, 26, 0, .5);
   border: .2rem solid var(--primary-colour);
   background-color: var(--primary-colour);
   cursor: pointer;
@@ -441,7 +615,7 @@ footer .credit a {
 
   nav {
     position: absolute;
-    width: 66%;
+    width: 55%;
     height: 100vh;
     top: 100%;
     right: -100%;
@@ -480,9 +654,17 @@ footer .credit a {
     transform: scale(.3);
   }
 
+  header .search-column {
+    width: 60%;
+  }
+
+  header .cart {
+    width: 55%;
+  }
+
   .hero main .cta {
-    padding: 1.5rem 3rem;
-    font-size: 2rem;
+    padding: 1.2rem 2.1rem;
+    font-size: 1.8rem;
   }
 
   .about .content {
@@ -520,8 +702,8 @@ footer .credit a {
   }
 
   .area form button {
-    padding: 1.2rem 3.1rem;
-    font-size: 2rem;
+    padding: 1.2rem 2.1rem;
+    font-size: 1.8rem;
   }
 }
 
@@ -531,17 +713,29 @@ footer .credit a {
     font-size: 62.5%;
   }
 
+  nav {
+    width: 66%;
+  }
+
+  header .search-column {
+    width: 80%;
+  }
+
+  header .cart {
+    width: 77%;
+  }
+
   .hero main {
     max-width: 45rem;
   }
 
   .hero main .cta {
-    padding: 1.9rem 3.5rem;
-    font-size: 2.3rem;
+    padding: 1.5rem 2.5rem;
+    font-size: 2rem;
   }
 
   .area form button {
-    padding: 1.9rem 3.5rem;
-    font-size: 2.3rem;
+    padding: 1.5rem 2.5rem;
+    font-size: 2rem;
   }
 }
